@@ -1,0 +1,105 @@
+<div class="container mt-4">
+  <div class="card">
+    <h1>Master College</h1>
+    <form (ngSubmit)="save()" #collegeForm="ngForm">
+      <div class="form-group">
+        <label>College Name</label>
+        <input type="text" [(ngModel)]="COLLEGE_NAME" [ngModelOptions]="{standalone: true}" class="form-control" id="college_name" placeholder="Enter College Name" required>
+      </div>
+
+      <div class="form-group">
+        <label>College Code</label>
+        <input type="text" [(ngModel)]="COLLEGE_CODE" [ngModelOptions]="{standalone: true}" class="form-control" id="college_code" placeholder="Enter College Code" required>
+      </div>
+
+      <div class="form-group">
+        <label>College Acronym</label>
+        <input type="text" [(ngModel)]="COLLEGE_ACRONYM" [ngModelOptions]="{standalone: true}" class="form-control" id="college_acronym" placeholder="Enter College Acronym" required>
+      </div>
+
+      <div class="form-group">
+        <label>College Address</label>
+        <input type="text" [(ngModel)]="COLLEGE_ADDRESS" [ngModelOptions]="{standalone: true}" class="form-control" id="college_address" placeholder="Enter College Address" required>
+      </div>
+
+      <div class="form-group">
+        <label>College Website</label>
+        <input type="text" [(ngModel)]="COLLEGE_WEBSITE" [ngModelOptions]="{standalone: true}" class="form-control" id="college_website" placeholder="Enter College Website" required>
+      </div>
+
+      <div class="form-group">
+        <label>College Phone</label>
+        <input
+          type="text"
+          [(ngModel)]="COLLEGE_PHONE"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="college_phone"
+          name="COLLEGE_PHONE"
+          placeholder="Enter College Phone"
+          pattern="[0-9]{10}"
+          required
+        />
+        <div
+          *ngIf="
+            collegeForm.controls['COLLEGE_PHONE']?.invalid &&
+            collegeForm.controls['COLLEGE_PHONE']?.touched
+          "
+          class="text-danger"
+        >
+          Please enter a valid 10-digit phone number.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>College Mail</label>
+        <input type="email" [(ngModel)]="COLLEGE_MAIL" [ngModelOptions]="{standalone: true}" class="form-control" id="college_mail" placeholder="Enter College Mail" required>
+      </div>
+
+      <div class="form-group">
+        <label>Created by</label>
+        <input type="text" [(ngModel)]="CREATED_BY" [ngModelOptions]="{standalone: true}" class="form-control" id="created_by" placeholder="Created by" required>
+      </div>
+
+      <div class="form-group">
+        <label>Created on</label>
+        <input type="date" [(ngModel)]="CREATED_ON" [ngModelOptions]="{standalone: true}" class="form-control" id="created_on" placeholder="Created on" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-4">Save</button>
+    </form>
+  </div>
+
+  <div class="container mt-4">
+    <h1>Master College Table</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">College Name</th>
+          <th scope="col">College Code</th>
+          <th scope="col">College Acronym</th>
+          <th scope="col">College Address</th>
+          <th scope="col">College Website</th>
+          <th scope="col">College Phone</th>
+          <th scope="col">College Mail</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let CollegeItem of CollegeArray">
+          <td>{{ CollegeItem.COLLEGE_NAME }}</td>
+          <td>{{ CollegeItem.COLLEGE_CODE }}</td>
+          <td>{{ CollegeItem.COLLEGE_ACRONYM }}</td>
+          <td>{{ CollegeItem.COLLEGE_ADDRESS }}</td>
+          <td>{{ CollegeItem.COLLEGE_WEBSITE }}</td>
+          <td>{{ CollegeItem.COLLEGE_PHONE }}</td>
+          <td>{{ CollegeItem.COLLEGE_MAIL }}</td>
+          <td>
+            <button type="button" class="btn btn-success" (click)="setUpdate(CollegeItem)">Edit</button>
+            <!-- <button type="button" class="btn btn-danger" (click)="deleteCollege(CollegeItem.COLLEGE_NAME)">Delete</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
